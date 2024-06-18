@@ -17,7 +17,7 @@ app.use(
 
 app.use(
 	cors({
-		origin:"https://study-notion-project-iota.vercel.app",
+		origin:"http://localhost:3000",
 	})
 )
 
