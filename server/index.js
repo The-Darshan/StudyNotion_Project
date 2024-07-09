@@ -6,6 +6,11 @@ const fileUpload = require("express-fileupload");
 const cors = require("cors");
 const http = require("http");
 const socketIo = require("socket.io");
+const dotenv = require("dotenv");
+
+const PORT = process.env.PORT || 4000;
+
+dotenv.config()
 
 const server = http.createServer(app);
 const io = socketIo(server , {
@@ -67,6 +72,6 @@ app.use("/api/v1/room",roomRoute);
 
 cloudinaryConnect();
 
-server.listen(4000,()=>{
+server.listen(PORT,()=>{
     console.log("Server Started at port")
 })
