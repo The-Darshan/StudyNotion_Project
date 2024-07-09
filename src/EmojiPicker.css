@@ -1,0 +1,46 @@
+/* src/EmojiPicker.css */
+.emoji-picker-react {
+    position: absolute;
+    bottom: 60px;
+    left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    z-index: 1000;
+}
+
+.emoji-picker-react .emoji-group:before {
+    background: #f9f9f9;
+    color: #000;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.emoji-picker-react .emoji-categories {
+    background-color: #f9f9f9;
+    border-top: 1px solid #ccc;
+}
+
+.emoji-picker-react .emoji-search {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.emoji-picker-react .emoji-scroll-wrapper {
+    padding: 10px;
+}
+
+.emoji-picker-react .emoji-category {
+    margin: 10px 0;
+}
+
+.emoji-picker-react .emoji-group {
+    padding: 10px;
+}
+
+.emoji-picker-react .emoji-categories button {
+    padding: 10px;
+}

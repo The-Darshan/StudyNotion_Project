@@ -8,7 +8,7 @@ const Cart = () => {
     const {total,totalItem} = useSelector((state)=>state.cart)
 
   return (
-    <div className='text-white font-inter w-full h-full'> 
+    <div className=' font-inter w-full h-full'> 
         <h1 className='text-4xl mb-10'>Cart</h1>
         <p className='text-richblack-300 border-b pb-2 font-semibold border-richblack-300'>{totalItem} {totalItem.length>1 ? "Courses in Cart":"Course in Cart"}</p>
 

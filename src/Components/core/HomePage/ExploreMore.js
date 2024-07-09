@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { HomePageExplore } from '../../../Data/homepage-explor';
 import HighlightText from './HighlightText';
 import CourseCard from './CourseCard';
+import { useSelector } from 'react-redux';
 
 const tabName=["Free","New to coding","Most popular","Skills paths","Career paths"];
 
@@ -10,6 +11,7 @@ const ExploreMore = () => {
     const [currentTab,setCurrentTab] = useState(tabName[0])
     const [course , setCourse] = useState(HomePageExplore[0].courses)
     const [currentCard ,setCurrentCard] = useState(HomePageExplore[0].courses[0].heading)   
+    const {darkMode} = useSelector((state)=>state.theme)
 
     const setMyCards = (value)=>{
         setCurrentTab(value)
@@ -33,7 +35,7 @@ const ExploreMore = () => {
             {
                 tabName.map((tab,indx)=>{
                     return(
-                    <div className={`text-[16px] flex flex-row gap-2 ${currentTab === tab ?"bg-richblack-900 text-richblack-5 font-medium" :"text-richblack-200"} rounded-full transition-all duration-200 cursor-pointer hover:bg-richblack-900 hover:text-richblack-5 px-7 py-2`} key={indx} onClick={(e)=>setMyCards(e.target.textContent
+                    <div className={`text-[16px] flex flex-row gap-2 ${currentTab === tab ?`${ darkMode ?"bg-richblack-900": "bg-richblack-100"} text-richblack-5 font-medium` :"text-richblack-200"} rounded-full transition-all duration-200 cursor-pointer hover:bg-richblack-900 hover:text-richblack-5 px-7 py-2`} key={indx} onClick={(e)=>setMyCards(e.target.textContent
                     )}>{tab}</div>
                     )
                 })

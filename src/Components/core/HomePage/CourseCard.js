@@ -7,7 +7,7 @@ const CourseCard = ({setCurrentCard,cardData,currentCard}) => {
     
       <div onClick={()=>{setCurrentCard(cardData.heading)}} className={`${currentCard==cardData.heading ? "flex flex-col bg-white mt-6 w-8/12 mr-12 -pr-20 font-inter hover:bg-richblack-5 shadow-[12px_12px_0_0] shadow-yellow-50 transition-all duration-200" :"flex flex-col  bg-richblack-800 w-8/12 mt-6 hover:bg-richblack-5 hover:text-richblack-800 mr-12 -pr-20 font-inter"}`}>
 
-        <div className={`${currentCard==cardData.heading ?"mt-7 ml-5 font-inter font-semibold text-xl text-richblack-900" :"mt-7 ml-5 font-inter font-semibold text-xl"}`}>
+        <div className={`${currentCard==cardData.heading ?"mt-7 ml-5 font-inter font-semibold text-xl text-richblack-900" :"mt-7 ml-5 font-inter font-semibold text-xl text-white"}`}>
           {cardData.heading}
         </div>
 

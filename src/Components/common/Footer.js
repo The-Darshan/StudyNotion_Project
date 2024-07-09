@@ -3,6 +3,7 @@ import {FooterLink2} from "../../Data/footer-links";
 import { FaFacebook ,FaGoogle ,FaYoutube ,FaTwitter ,FaHeart, Fa4 } from "react-icons/fa6";
 import Logo2 from "../../assets/Logo-Full-Light.png"
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Company = ["About","Careers","Affiliates"]
 const Resources = ["Articles","Blogs","Chart Sheet","Code Challenges","Docs","Projects","Videos","Workspaces"]
@@ -12,9 +13,10 @@ const Community = ["Forums","Chapters","Events"]
 const Lower = ["Privacy Policy","Cookie Policy","Terms"]
 
 const Footer = () => {
+  const {darkMode} = useSelector((state)=>state.theme)
   return (
     // Sabse bada div bg k
-  <div className='bg-richblack-800  text-white flex flex-col items-center justify-center w-full'>
+  <div className={`${darkMode ? 'medium' : 'light'} flex flex-col items-center justify-center w-full`}>
 
     {/* Jisme content h */}
     <div className='flex  justify-center mt-10 gap-12 '>

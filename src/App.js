@@ -26,11 +26,13 @@ import CourseDetails from './Pages/CourseDetails';
 import ViewCourse from './Pages/ViewCourse';
 import VideoDetails from './Components/core/ViewCourse/VideoDetails';
 import Instructor from './Components/core/Dashboard/InstructorDashboard/Instructor';
+import Doubt from './Pages/Doubt';
 
 function App() {
   const {user} = useSelector((state)=>state.profile)
+  const {darkMode} = useSelector((state)=>state.theme)
   return (
-    <div className='w-screen min-h-screen bg-richblack-900 flex-col font-inter'>
+    <div className={`w-screen min-h-screen ${darkMode ? 'dark' : 'light'} bg-richblack-900 flex-col font-inter`}>
       <Navbar/>
        <Routes>
           <Route path='/' element={<Home/>}/>
@@ -43,6 +45,7 @@ function App() {
           <Route path='/verifyEmail'  element={<VerifyEmail/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/contact' element={<ContactUs/>}/>
+          <Route path='doubt/:room_id' element={<Doubt/>}/>
 
           <Route element={
             <PrivateRoute>

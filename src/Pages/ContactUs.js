@@ -6,7 +6,7 @@ import  ReviewSlider  from '../Components/common/ReviewSlider'
 
 const ContactUs = () => {
   return (
-    <div className='bg-richblack-900'>
+    <div>
 
         {/* Secton 1 */}
         <div className='flex mt-20 gap-x-10 mb-20'>
@@ -14,8 +14,8 @@ const ContactUs = () => {
              <ContactDetail/>
 
              {/* Right Div */}
-             <div className='border border-richblack-600 text-richblack-300 rounded-xl p-7 lg:p-14 flex flex-col w-[700px] '>
-                <h1 className='text-white text-4xl mb-2 font-semibold'>
+             <div className='border border-richblack-600 rounded-xl p-7 lg:p-14 flex flex-col w-[700px] '>
+                <h1 className='text-4xl mb-2 font-semibold'>
                 Got a Idea? We've got the skills. Let's team up
                 </h1>
                 <p className='font-inter text-richblack-300'>
@@ -26,7 +26,7 @@ const ContactUs = () => {
             </div>
 
                 {/* Section 2 */}
-            <div className='w-11/12 max-w-maxContent mx-auto text-white'>
+            <div className='w-11/12 max-w-maxContent mx-auto'>
                
                <h2 className='text-4xl font-semibold mt-32 mb-20 text-center'>Reviews from other Learners</h2>
           

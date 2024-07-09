@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import * as Icon1 from "react-icons/bi"
 import * as Icon3 from "react-icons/hi2"
 import * as Icon2 from "react-icons/io5"
@@ -26,8 +27,9 @@ const contactDetails = [
   ]
   
 const ContactDetail = () => {
+  const {darkMode} = useSelector((state)=>state.theme)
   return (
-    <div className='flex flex-col gap-12 text-white bg-richblack-800 rounded-lg ml-12 py-10 font-inter w-[500px] h-fit'>
+    <div className={`flex flex-col gap-12 ${darkMode ? "bg-richblack-800" : "border  border-black" } rounded-lg ml-12 py-10 font-inter w-[500px] h-fit`}>
             {
                 contactDetails.map((item,indx)=>{
                     let Icon = Icon1[item.icon] || Icon2[item.icon] || Icon3[item.icon]

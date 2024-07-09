@@ -8,6 +8,7 @@ const CourseProgress = require("../models/CourseProgressModel");
 const { uploadImageToCloudinary } = require("../utility/imageUploader");
 require("dotenv").config();
 const { convertSecondToDuration } = require("../utility/secToDuration");
+const ChatRoom = require("../models/ChatRoomModel")
 
 exports.createCourse = async (req, res) => {
   try {
@@ -81,6 +82,9 @@ exports.createCourse = async (req, res) => {
       thumbnail,
       process.env.FOLDER_NAME
     );
+
+    console.log("4");
+
     const newCourse = await Course.create({
       title,
       description,
@@ -92,14 +96,18 @@ exports.createCourse = async (req, res) => {
       Instruction: instruction,
       category: tagDetails._id,
       thumbnail: thumbnailImage.secure_url,
-    }).populate("courseContent").exec();
+    })
+
+    console.log("4")
+    const doubt_room = title + "-Doubt-Room"
+    await ChatRoom.create({ name:  doubt_room, Admin : userid });
 
     await users.findByIdAndUpdate(
       { _id: userid },
       { $push: { courses: newCourse._id } },
       { new: true }
     );
-    console.log("4")
+    console.log("6")
     await Category.findByIdAndUpdate(
       { _id: tagDetails._id },
       { $push: { course: newCourse._id } },

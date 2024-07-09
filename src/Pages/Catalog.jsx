@@ -45,7 +45,7 @@ const Catalog = () => {
   }, [categoryID]);
 
   return (
-    <div className="text-white font-inter">
+    <div className="font-inter">
       <div className="py-[75px] pl-16 w-full bg-richblack-800">
         <p className="text-richblack-300 text-sm mb-2">
           {"Home / Catalog / "}

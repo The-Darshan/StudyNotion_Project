@@ -1,0 +1,7 @@
+2) Mail ma templates add karna h otp , pass_update .
+3) Category ka last wala function chalana h .
+4)Why to make a db for instructor in create course ? kari h koi reason h
+5)Particular course ma anhi reviewandRating nhi h to use create karke phir chalana h.
+6)Timming bhi add karni h ek course ka get ma
+7)Delete Course
+8) Section ma subSection Render

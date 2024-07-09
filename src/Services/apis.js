@@ -59,3 +59,10 @@ export const profile = {
 export const contact = {
     CONTACT_API : BASE_URL + '/contact/contactUsController'
 }
+
+export const chatRoom = {
+    SEND_MESSAGE_API : BASE_URL + '/room/sendMessage',
+    FIND_CHAT_ROOM_API : BASE_URL + '/room/findChatRoom',
+    GET_MESSAGES_API : BASE_URL + '/room/getUserSpecificMessages',
+    DELETE_MESSAGE_API : BASE_URL + '/room/deleteMessage'
+}

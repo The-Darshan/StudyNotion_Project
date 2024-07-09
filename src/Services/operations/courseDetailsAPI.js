@@ -74,7 +74,6 @@ export const addCourseDetails = async (formData, token) => {
     });
     console.log("CREATE COURSE API RESPONSE >>>>>>>>", response);
     if (!response.data.success) throw new Error(response.data.Message);
-
     toast.success("Course Created Successfully");
     result = response?.data?.data;
   } catch (err) {

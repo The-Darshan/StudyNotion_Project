@@ -11,6 +11,8 @@ import { MdWatchLater , MdCurrencyRupee } from "react-icons/md";
 import { CiCircleCheck } from "react-icons/ci";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { LuMessageSquare } from "react-icons/lu";
+import { findChatRoom } from '../../../../Services/operations/chatRoomAPI'
 
 const CoursesTable = ({ courses, setCourses }) => {
   const { token } = useSelector((state) => state.auth);
@@ -30,6 +32,17 @@ const CoursesTable = ({ courses, setCourses }) => {
     }
     setConfirmationModal(null)
     setLoading(false)
+  }
+
+  const findchatroom = async(name,Admin)=>{
+    try{
+
+      let result = await findChatRoom(name , Admin);
+      const room_id = result?._id;
+      navigate(`/doubt/${room_id}`);
+    }catch(err){
+      console.log(err);
+    }
   }
 
   return (
@@ -84,7 +97,7 @@ const CoursesTable = ({ courses, setCourses }) => {
                 <Td className="cursor-pointer h-fit">
                     <button disabled={loading} 
                     onClick={()=>navigate(`/dashboard/edit-course/${course._id}`)}
-                    className="mr-[19px] hover:text-caribbeangreen-100 hover:scale-125 transition-all duration-200"
+                    className="mr-[5px] hover:text-caribbeangreen-100 hover:scale-125 transition-all duration-200"
                     >
                         <FiEdit2 fontSize={20}/>
                     </button>
@@ -99,6 +112,13 @@ const CoursesTable = ({ courses, setCourses }) => {
                     })} className="hover:text-pink-400 hover:scale-125 transition-all duration-200 mt-2">
                         <RiDeleteBin6Line fontSize={20}/>
                     </button>
+                    {
+                      course?.status === COURSE_STATUS?.PUBLISHED && 
+                      // course?.studentsEnrolled?.length > 0 && 
+                      <button className="ml-[5px]  hover:text-richblue-100 hover:scale-125 transition-all duration-200" onClick={()=> findchatroom(course.title+"-Doubt-Room",course.createdBy)}>
+                      <LuMessageSquare fontSize={20}/>
+                      </button>
+                      }
                 </Td>
               </Tr>
             ))

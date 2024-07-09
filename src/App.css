@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.light {
+  background-color: whitesmoke;
+  color: #000814;
+}
+
+.dark {
+  background-color: #000814;
+  color: whitesmoke;
+}
+
+.medium{
+  background-color: #161D29;
+  color: whitesmoke;
+}
+/* .emoji-picker{ */
+    /* margin-top: 200px; */
+  /* } */

@@ -7,6 +7,7 @@ const mailSender = require("../utility/nodemailer");
 const crypto = require("crypto");
 const { paymentSuccessEmail } = require("../mail/templates/paymentSuccessEmail");
 const { courseEnrollmentEmail } = require("../mail/templates/courseEnrollementEmail");
+const ChatRoom = require("../models/ChatRoomModel")
 // intialize the razorpay order
 
 const enrollStudents = async (courses, userId, res) => {
@@ -27,6 +28,8 @@ const enrollStudents = async (courses, userId, res) => {
         { new: true }
       );
 
+      console.log(enrolledCourse)
+
       if (!enrolledCourse) {
         return res.status(500).json({
           success: false,
@@ -39,6 +42,19 @@ const enrollStudents = async (courses, userId, res) => {
         userId : userId,
         completedVedio:[],
       })
+      
+      let RoomName = enrolledCourse.title + "-Doubt-Room"
+      console.log(RoomName)
+
+      const result =   await ChatRoom.findOneAndUpdate({
+        name:RoomName
+      } ,
+    {
+      $push :{members:userId }
+    },{
+      new:true
+    })
+
 
       const enrolledStudent = await user.findByIdAndUpdate(
         userId,
@@ -49,6 +65,7 @@ const enrollStudents = async (courses, userId, res) => {
         { new: true }
       );
 
+
       const emailresponse = await mailSender(
         enrolledStudent.email,
         `Successfully enrolled into ${enrolledCourse.title}`,
@@ -58,6 +75,7 @@ const enrollStudents = async (courses, userId, res) => {
         )
       );
       console.log("Email Sent Successfully", emailresponse.response);
+
     }
      catch (err) {
       return res.status(500).json({
@@ -147,18 +165,17 @@ exports.verifyPayment = async (req, res) => {
       message: "Payment Failed",
     });
   }
-
+  console.log("1")
   let body = razorpay_order_id + "|" + razorpay_payment_id;
 
   const expectedSignature = crypto
     .createHmac("sha256", process.env.RAZORPAY_SECRET)
     .update(body.toString())
     .digest("hex");
-
+    console.log("2")
   if (expectedSignature == razorpay_signature) {
     // enroll the student
     await enrollStudents(courses, id, res);
-
     return res.status(200).json({
       success: true,
       message: "Payment Verfied",

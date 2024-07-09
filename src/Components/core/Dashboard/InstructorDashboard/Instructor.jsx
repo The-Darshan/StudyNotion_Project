@@ -27,8 +27,7 @@ const Instructor = () => {
       setLoading(false);
     };
     getCourseDataWithStats();
-  }, []);
-
+  }, [token]);
 
   const totalAmount = instructorData?.reduce(
     (acc, curr) => acc + curr.totalAmountGenerated,
@@ -41,7 +40,7 @@ const Instructor = () => {
   );
 
   return (
-    <div className="text-white font-inter">
+    <div className="text-white font-inter p-4">
       <div>
         <h1 className="text-4xl font-semibold">Hi {user?.firstname} 🖐</h1>
         <p className="text-richblack-300 mt-2">Let's start something new</p>
@@ -51,32 +50,30 @@ const Instructor = () => {
         <div className="spinner"></div>
       ) : courses?.length > 0 ? (
         <div>
-          <div className="flex flex-col">
-            <div className="flex gap-x-4">
-              <InstructorChart courses={instructorData}/>
+          <div className="flex flex-col lg:flex-row gap-4">
+            <InstructorChart courses={instructorData} className="lg:w-9/12"/>
 
-              <div className="rounded-lg bg-richblack-800 w-3/12 mt-4 pt-5 pl-5">
-                <p className="text-3xl text-pure-greys-5 font-semibold mb-4">Statistics</p>
+            <div className="rounded-lg bg-richblack-800 w-full lg:w-3/12 mt-4 pt-5 pl-5">
+              <p className="text-3xl text-pure-greys-5 font-semibold mb-4">Statistics</p>
 
-                <div className="mb-4">
-                  <p className="text-lg text-pure-greys-100">Total Course</p>
-                  <p className="text-2xl text-pure-greys-5">{courses?.length}</p>
-                </div>
+              <div className="mb-4">
+                <p className="text-lg text-pure-greys-100">Total Course</p>
+                <p className="text-2xl text-pure-greys-5">{courses?.length}</p>
+              </div>
 
-                <div className="mb-4">
-                  <p className="text-lg text-pure-greys-100">Total Students</p>
-                  <p className="text-2xl text-pure-greys-5">{totalStudents}</p>
-                </div>
+              <div className="mb-4">
+                <p className="text-lg text-pure-greys-100">Total Students</p>
+                <p className="text-2xl text-pure-greys-5">{totalStudents}</p>
+              </div>
 
-                <div>
-                  <p className="text-lg text-pure-greys-100">Total Income</p>
-                  <p className="text-2xl text-pure-greys-5">Rs. {totalAmount}</p>
-                </div>
+              <div>
+                <p className="text-lg text-pure-greys-100">Total Income</p>
+                <p className="text-2xl text-pure-greys-5">Rs. {totalAmount}</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-lg bg-richblack-800 mt-4 px-10">
+          <div className="rounded-lg bg-richblack-800 mt-4 px-4 lg:px-10">
             <div className="flex justify-between pt-5">
                 <p className="text-xl text-pure-greys-5 font-semibold">
                     Your Courses
@@ -84,11 +81,11 @@ const Instructor = () => {
                 <Link className="text-yellow-50 cursor-pointer" to="/dashboard/my-courses"> View All </Link>
             </div>
 
-            <div className="flex mt-3 gap-x-4">
+            <div className="flex flex-wrap gap-4 mt-3">
                 {
-                    courses.slice(0,3)?.map((course,indx)=>(
-                        <div key={indx}>
-                            <img src={course.thumbnail} className="w-80 h-40"/>
+                    courses.slice(0,3)?.map((course, indx) => (
+                        <div key={indx} className="w-full lg:w-1/3">
+                            <img src={course.thumbnail} className="w-full h-40 object-cover rounded-lg"/>
 
                             <div className="mb-3 mt-2">
                                 <p className="text-pure-greys-5">{course.title}</p>
@@ -96,16 +93,12 @@ const Instructor = () => {
                                 <div className="flex text-pure-greys-100 text-center">
                                     <p>{course.studentsEnrolled?.length} students{" "} | Rs {course.price}</p>
                                 </div>
-
                             </div>
-
                         </div>
                     ))
                 }
             </div>
-
           </div>
-
         </div>
       ) : (
         <div className="flex flex-col gap-5 items-center mt-10">

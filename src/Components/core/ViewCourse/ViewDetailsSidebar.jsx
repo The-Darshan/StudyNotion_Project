@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import IconButton from "../../common/IconButton";
 import { RiArrowUpSLine } from "react-icons/ri";
 import { IoIosArrowBack } from "react-icons/io";
+import { findChatRoom } from '../../../Services/operations/chatRoomAPI'
 
 const ViewDetailsSidebar = ({ setReviewModal }) => {
   const [activeStatus, setActiveStatus] = useState("");
@@ -42,6 +43,17 @@ console.log("courseData : ",courseEntireData, courseSectionData , completedLectu
     setActiveFlags();
   }, [courseSectionData, courseEntireData, location.pathname]);
 
+  const findchatroom = async()=>{
+    try{
+
+      let result = await findChatRoom(courseEntireData?.courseDetails?.title + "-Doubt-Room" , courseEntireData?.courseDetails?.createdBy?._id);
+      const room_id = result?._id;
+      navigate(`/doubt/${room_id}`);
+    }catch(err){
+      console.log(err);
+    }
+  }
+
   return (
     <>
       <div className="text-white w-1/5 bg-richblack-800 outline-none">
@@ -56,13 +68,18 @@ console.log("courseData : ",courseEntireData, courseSectionData , completedLectu
               <IconButton
                 text="Add Review"
                 onclick={() => setReviewModal(true)}
-                customClasses="text-black bg-yellow-50 py-2 px-3 rounded-md font-semibold"
+                customClasses="text-black bg-yellow-50 py-2 px-3 rounded-md font-semibold cursor-pointer"
               />
           </div>
 
           {/* for headings or tile */}
           <div className="mt-3 mb-1 pl-3 border-b border-pure-greys-100 pb-2">
+            <div className="flex justify-between items-center">
             <p className="text-pure-greys-5 font-semibold text-lg">{courseEntireData?.courseDetails?.title}</p>
+            <div className="mr-5 text-black bg-yellow-50 py-2 px-3 rounded-md font-semibold cursor-pointer" onClick={findchatroom}>
+              Ask Doubt 
+            </div>
+            </div>
             <p className="text-pure-greys-100 text-sm">
               {completedLectures?.length} / {totalNoofLectures}
             </p>
