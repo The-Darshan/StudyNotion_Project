@@ -67,6 +67,6 @@ app.use("/api/v1/room",roomRoute);
 
 cloudinaryConnect();
 
-server.listen(4000, () => {
-    console.log("Server Started at port 4000");
-});
+server.listen(4000,()=>{
+    console.log("Server Started at port")
+})
